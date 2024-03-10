@@ -68,7 +68,6 @@ const shuffledQuestions = initialQuestions.map((question) => {
     fakeImage: shouldSwap ? question.correctImage : question.fakeImage,
   };
 });
-console.log(shuffledQuestions);
 const Game = () => {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -150,11 +149,7 @@ const Game = () => {
         <div className="md:flex w-full gap-4 mt-1 bg-black p-3">
           <div>
             <img
-              // src={questions[currentQuestion]?.correctImage}
               src={currentQuestionData?.correctImage}
-              // onClick={() =>
-              //   handleImageClick(questions[currentQuestion]?.correctImage)
-              // }
               onClick={() =>
                 handleImageClick(currentQuestionData?.correctImage)
               }
@@ -162,10 +157,6 @@ const Game = () => {
           </div>
           <div>
             <img
-              // src={questions[currentQuestion]?.fakeImage}
-              // onClick={() =>
-              //   handleImageClick(questions[currentQuestion]?.fakeImage)
-              // }
               src={currentQuestionData?.fakeImage}
               onClick={() => handleImageClick(currentQuestionData?.fakeImage)}
             />
