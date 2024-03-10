@@ -20,7 +20,6 @@ import correct9 from "../assets/websiteImage/9-correct.png";
 import fake9 from "../assets/websiteImage/9-fake.png";
 import correct10 from "../assets/websiteImage/10-correct.png";
 import fake10 from "../assets/websiteImage/10-fake.png";
-import { Router } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ButtonCTA from "./ButtonCTA";
@@ -61,11 +60,20 @@ function reRun() {
 
 reRun();
 
+const shuffledQuestions = initialQuestions.map((question) => {
+  const shouldSwap = Math.random() > 0.5;
+  return {
+    id: question.id,
+    correctImage: shouldSwap ? question.fakeImage : question.correctImage,
+    fakeImage: shouldSwap ? question.correctImage : question.fakeImage,
+  };
+});
+console.log(shuffledQuestions);
 const Game = () => {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [timer, setTimer] = useState(15);
-  const [questions, setQuestions] = useState(initialQuestions);
+  const [questions, setQuestions] = useState(shuffledQuestions);
 
   const navigate = useNavigate();
 
