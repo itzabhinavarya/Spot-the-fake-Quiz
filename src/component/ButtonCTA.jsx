@@ -5,7 +5,7 @@ const ButtonCTA = ({ title, color }) => {
     <>
       <button
         type="button"
-        className={`font-poppins text-white bg-${color}-600  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`}
+        className={`font-poppins text-white bg-green-600  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`}
       >
         {title}
       </button>

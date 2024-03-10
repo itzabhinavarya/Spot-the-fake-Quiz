@@ -24,22 +24,48 @@ import { Router } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ButtonCTA from "./ButtonCTA";
+const initialQuestions = [
+  { id: 1, correctImage: correct1, fakeImage: fake1 },
+  { id: 2, correctImage: correct2, fakeImage: fake2 },
+  { id: 3, correctImage: correct3, fakeImage: fake3 },
+  { id: 4, correctImage: correct4, fakeImage: fake4 },
+  { id: 5, correctImage: correct5, fakeImage: fake5 },
+  { id: 6, correctImage: correct6, fakeImage: fake6 },
+  { id: 7, correctImage: correct7, fakeImage: fake7 },
+  { id: 8, correctImage: correct8, fakeImage: fake8 },
+  { id: 9, correctImage: correct9, fakeImage: fake9 },
+  { id: 10, correctImage: correct10, fakeImage: fake10 },
+];
+
+const QuestionLength = Array.from(
+  { length: initialQuestions.length },
+  (_, index) => index + 1
+);
+
+// Function to shuffle the array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+var shuffledArray = [];
+var shuffledQuestionIndex = [];
+
+function reRun() {
+  shuffledArray = shuffleArray([...QuestionLength]);
+  shuffledQuestionIndex = [...shuffledArray];
+}
+
+reRun();
+
 const Game = () => {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [timer, setTimer] = useState(15);
-  const [questions, setQuestions] = useState([
-    { id: 1, correctImage: correct1, fakeImage: fake1 },
-    { id: 2, correctImage: correct2, fakeImage: fake2 },
-    { id: 3, correctImage: correct3, fakeImage: fake3 },
-    { id: 4, correctImage: correct4, fakeImage: fake4 },
-    { id: 5, correctImage: correct5, fakeImage: fake5 },
-    { id: 6, correctImage: correct6, fakeImage: fake6 },
-    { id: 7, correctImage: correct7, fakeImage: fake7 },
-    { id: 8, correctImage: correct8, fakeImage: fake8 },
-    { id: 9, correctImage: correct9, fakeImage: fake9 },
-    { id: 10, correctImage: correct10, fakeImage: fake10 },
-  ]);
+  const [questions, setQuestions] = useState(initialQuestions);
 
   const navigate = useNavigate();
 
@@ -67,7 +93,6 @@ const Game = () => {
 
   const handleAnswer = (selectedImage) => {
     if (selectedImage?.includes("fake")) {
-      console.log("fake");
       setScore((prevScore) => prevScore + 1);
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
       setTimer(15);
@@ -79,10 +104,12 @@ const Game = () => {
     }
   };
 
-  // new function to handle image click
   const handleImageClick = (image) => {
     handleAnswer(image);
   };
+
+  const currentQuestionIndex = shuffledQuestionIndex[currentQuestion];
+  const currentQuestionData = questions[currentQuestionIndex - 1];
 
   return (
     <>
@@ -107,7 +134,7 @@ const Game = () => {
           </div>
           <div>
             <Link to="/">
-              <ButtonCTA title="Back to Home" color="red" />
+              <ButtonCTA title="Back to Home" />
             </Link>
           </div>
         </div>
@@ -115,18 +142,24 @@ const Game = () => {
         <div className="md:flex w-full gap-4 mt-1 bg-black p-3">
           <div>
             <img
-              src={questions[currentQuestion]?.correctImage}
+              // src={questions[currentQuestion]?.correctImage}
+              src={currentQuestionData?.correctImage}
+              // onClick={() =>
+              //   handleImageClick(questions[currentQuestion]?.correctImage)
+              // }
               onClick={() =>
-                handleImageClick(questions[currentQuestion]?.correctImage)
+                handleImageClick(currentQuestionData?.correctImage)
               }
             />
           </div>
           <div>
             <img
-              src={questions[currentQuestion]?.fakeImage}
-              onClick={() =>
-                handleImageClick(questions[currentQuestion]?.fakeImage)
-              }
+              // src={questions[currentQuestion]?.fakeImage}
+              // onClick={() =>
+              //   handleImageClick(questions[currentQuestion]?.fakeImage)
+              // }
+              src={currentQuestionData?.fakeImage}
+              onClick={() => handleImageClick(currentQuestionData?.fakeImage)}
             />
           </div>
         </div>
