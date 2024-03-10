@@ -20,7 +20,7 @@ import correct9 from "../assets/websiteImage/9-correct.png";
 import fake9 from "../assets/websiteImage/9-fake.png";
 import correct10 from "../assets/websiteImage/10-correct.png";
 import fake10 from "../assets/websiteImage/10-fake.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ButtonCTA from "./ButtonCTA";
 const initialQuestions = [
@@ -73,7 +73,8 @@ const Game = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [timer, setTimer] = useState(15);
   const [questions, setQuestions] = useState(shuffledQuestions);
-
+  const location = useLocation();
+  const playerName = location.state?.playerName;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -94,9 +95,9 @@ const Game = () => {
 
   useEffect(() => {
     if (currentQuestion === questions.length) {
-      navigate("/end", { state: { score } });
+      navigate("/end", { state: { score, playerName } });
     }
-  }, [currentQuestion, questions.length, navigate, score]);
+  }, [currentQuestion, questions.length, navigate, score, playerName]);
 
   const handleAnswer = (selectedImage) => {
     if (selectedImage?.includes("fake")) {
@@ -124,7 +125,10 @@ const Game = () => {
         <div className="flex justify-center items-center">
           <p className="text-2xl font-medium tracking-wide">
             Game Started,
-            <span className="text-green-500"> All the best 🙌</span>
+            <span className="text-green-500">
+              {" "}
+              All the best {playerName} 🙌
+            </span>
           </p>
         </div>
 

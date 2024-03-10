@@ -1,6 +1,20 @@
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import ButtonCTA from "./ButtonCTA";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const Start = () => {
+  const [playerName, setPlayerName] = useState("");
+  const navigate = useNavigate();
+
+  const handleUserName = () => {
+    if (playerName?.length < 3) {
+      toast.error("Please Enter Your Name");
+    } else {
+      navigate("/game", { state: { playerName } });
+    }
+  };
   return (
     <>
       <div className="font-poppins text-white">
@@ -32,10 +46,20 @@ const Start = () => {
               </li>
             </ul>
           </div>
-          <div className="mt-5 flex justify-center items-center">
-            <Link to="/game">
-              <ButtonCTA title="Let's Play 🎮" color="green" />
-            </Link>
+          <div className="mt-5 flex justify-center items-center gap-3 w-full">
+            <div className="w-1/4">
+              <input
+                type="text"
+                value={playerName}
+                onChange={(e) => {
+                  setPlayerName(e.target.value);
+                }}
+                className="mb-2 bg-gray-100 border border-gray-300 text-white text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                placeholder="Enter Your Name"
+                required
+              ></input>
+            </div>
+              <ButtonCTA title="Let's Play 🎮" onClick={handleUserName} />
           </div>
         </div>
       </div>

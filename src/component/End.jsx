@@ -2,10 +2,12 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ButtonCTA from "./ButtonCTA";
+import UserTable from "./UserTable";
 const End = () => {
   const [cheers, setCheers] = useState("");
   const location = useLocation();
   const score = location.state?.score || 0;
+  const playerName = location.state?.playerName;
   useEffect(() => {
     if (score <= 3) {
       setCheers("Oops... You can do better! 😔");
@@ -35,6 +37,9 @@ const End = () => {
         <Link to="/">
           <ButtonCTA title="Re-play 🎮" color="green" />
         </Link>
+      </div>
+      <div className="mt-5 px-5">
+        <UserTable score={score} playerName={playerName}/>
       </div>
     </>
   );
