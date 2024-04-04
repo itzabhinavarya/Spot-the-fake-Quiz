@@ -54,7 +54,7 @@ const Start = () => {
                 onChange={(e) => {
                   setPlayerName(e.target.value);
                 }}
-                className="mb-2 bg-gray-100 border border-gray-300 text-white text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                className="mb-2 bg-gray-100 border border-gray-300 text-white text-sm rounded-lg block w-full p-2.5"
                 placeholder="Enter Your Name"
                 required
               ></input>
