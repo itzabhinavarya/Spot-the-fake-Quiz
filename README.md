@@ -3,6 +3,12 @@
 ## Description
 Spot-the-Fake is a dynamic web-based game where players are challenged to identify counterfeit websites among two images of the same brand. Each pair of images consists of one genuine website and one fake one. Players have 15 seconds per image pair to make their selection. The game comprises a total of 10 questions, and players are provided feedback after each selection. At the end of the game, the total score, indicating the number of correctly identified fake websites, is displayed. The game also offers a 'Retry' button to restart and shuffles the order of image pairs for each game session.
 
+## Project Glimpse
+<img width="960" alt="Screenshot 2024-04-04 213850" src="https://github.com/itzabhinavarya/Spot-the-fake-Quiz/assets/95561280/a8fd1e24-2bce-411e-a155-3788f764f178">
+<img width="960" alt="Screenshot 2024-04-04 213920" src="https://github.com/itzabhinavarya/Spot-the-fake-Quiz/assets/95561280/78782102-bb22-49a5-8b02-b47a082d9a03">
+<img width="960" alt="Screenshot 2024-04-04 214020" src="https://github.com/itzabhinavarya/Spot-the-fake-Quiz/assets/95561280/e1397073-76da-4e6c-8f9b-b69782a3c1b1">
+
+
 ### Additional Features
 - Active feedback widget indicating remaining time for each image pair.
 - Option to proceed to the next set of images or final score page after making a selection.
